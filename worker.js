@@ -39,7 +39,7 @@ async function handleRequest(request) {
       "https://rest.db.ripe.net/search.json?query-string=AS" + cf.asn
     );
     org = safe(await ripe.json()).objects.object[2].attributes.attribute[1]
-      .value;
+      .value.toString();
   }
 
   let body = `
