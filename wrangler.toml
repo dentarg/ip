@@ -1,6 +1,5 @@
 name = "ip"
 type = "webpack"
-zone_id = ""
-private = false
+zone_id = "b40d62d70a8e79fc82b22518123cd25c"
 account_id = "0560f86764219612539d8c7059a503aa"
-route = ""
+route = "burd.se/ip"
