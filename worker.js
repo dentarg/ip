@@ -43,6 +43,42 @@ async function handleRequest(request) {
     ).objects.object[2].attributes.attribute[1].value.toString();
   }
 
+  let locale = "en-US";
+  let currentDate = new Date();
+  let currentDateDay = currentDate.toLocaleString(locale, { day: "numeric" });
+  let currentDateMonth = currentDate.toLocaleString(locale, { month: "long" });
+  let currentDateYear = currentDate.toLocaleString(locale, { year: "numeric" });
+  let currentDateHour = currentDate.toLocaleString(locale, {
+    hour: "2-digit",
+    hour12: false
+  });
+  let currentDateMinute = currentDate.toLocaleString(locale, {
+    minute: "2-digit"
+  });
+  let currentDateSecond = currentDate.toLocaleString(locale, {
+    second: "2-digit"
+  });
+  let currentDateMs = currentDate.getUTCMilliseconds();
+  let currentDateTimeZone = currentDate.getTimezoneOffset() == 0 ? "UTC" : "?";
+  // Example: 2 January 2018, 03:04:05.678 (UTC)
+  let currentDateString =
+    currentDateDay +
+    " " +
+    currentDateMonth +
+    " " +
+    currentDateYear +
+    ", " +
+    currentDateHour +
+    ":" +
+    currentDateMinute +
+    ":" +
+    currentDateSecond +
+    "." +
+    currentDateMs +
+    " (" +
+    currentDateTimeZone +
+    ")";
+
   let body = `
 <!DOCTYPE html><html lang="en"><head><title>ip: ${ip}</title></head><body>
 <pre>
@@ -56,6 +92,7 @@ Country: ${cf.country}
     cf.colo
   }
 ${cf.tlsVersion} (${cf.tlsCipher})
+${currentDateString}
 </pre>
 </body></html>`;
 
