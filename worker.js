@@ -80,7 +80,21 @@ async function handleRequest(request) {
     ")";
 
   let body = `
-<!DOCTYPE html><html lang="en"><head><title>ip: ${ip}</title></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ip: ${ip}</title>
+<style>
+@media (prefers-color-scheme:dark) {
+  body {
+    background: #333;
+    color:  #ddd;
+  }
+  a { color: white; }
+}
+</style>
+</head>
+<body>
 <pre>
 ${ip}
 ${records.join("\n")}
