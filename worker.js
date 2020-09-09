@@ -87,7 +87,7 @@ async function handleRequest(request) {
 ${ip}
 ${records.join("\n")}
 AS${cf.asn}
-Data center</a>: ${cf.colo}
+Data center: ${cf.colo}
 ${cf.tlsVersion} (${cf.tlsCipher})
 ${currentDateString}
 `;
