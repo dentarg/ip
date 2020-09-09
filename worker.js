@@ -1,4 +1,5 @@
 const ipPtr = require("ip-ptr");
+const cliBrowsers = ["curl", "wget"];
 
 addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request));
@@ -18,6 +19,9 @@ function safe(obj) {
 }
 
 async function handleRequest(request) {
+  let userAgent = request.headers.get("User-Agent").toLocaleLowerCase();
+  let cliBrowser = cliBrowsers.find(browser => userAgent.includes(browser));
+
   let cf = request.cf || {};
   let ip = request.headers.get("CF-Connecting-IP");
   let name = ipPtr(ip);
@@ -79,7 +83,15 @@ async function handleRequest(request) {
     currentDateTimeZone +
     ")";
 
-  let body = `
+  let plainBody = `
+${ip}
+${records.join("\n")}
+AS${cf.asn}
+Data center</a>: ${cf.colo}
+${cf.tlsVersion} (${cf.tlsCipher})
+${currentDateString}
+`;
+  let htmlBody = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,11 +120,15 @@ Country: ${cf.country}
 ${cf.tlsVersion} (${cf.tlsCipher})
 ${currentDateString}
 </pre>
-</body></html>`;
+</body></html>
+`;
 
   let headers = {
-    "Content-type": "text/html"
+    "Content-Type": `${cliBrowser ? "text/plain;" : "text/html"}; charset=utf-8`
   };
 
-  return new Response(body, { status: 200, headers: headers });
+  return new Response(cliBrowser ? plainBody : htmlBody, {
+    status: 200,
+    headers: headers
+  });
 }
