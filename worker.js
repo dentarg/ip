@@ -124,7 +124,7 @@ ${currentDateString}
 `;
 
   let headers = {
-    "Content-Type": `${cliBrowser ? "text/plain;" : "text/html"}; charset=utf-8`
+    "Content-Type": `${cliBrowser ? "text/plain" : "text/html"}; charset=utf-8`
   };
 
   return new Response(cliBrowser ? plainBody : htmlBody, {
