@@ -1,6 +1,19 @@
 # ip
 
-Use [Wrangler](https://github.com/cloudflare/wrangler) to
+Install Node and dependencies
+
+    brew install node
+    npm install
+
+Install [Rust]
+
+    brew install rust
+
+Install [Wrangler]
+
+    cargo install wrangler
+
+Use [Wrangler] to
 
 - Build
 
@@ -15,6 +28,10 @@ Use [Wrangler](https://github.com/cloudflare/wrangler) to
 
         wrangler publish
 
-Format the code with [Prettier](https://prettier.io/):
+Format the code with [Prettier]:
 
     npm run format
+
+[Rust]: https://www.rust-lang.org/
+[Wrangler]: https://github.com/cloudflare/wrangler
+[Prettier]: https://prettier.io/

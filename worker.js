@@ -19,11 +19,20 @@ function safe(obj) {
 }
 
 async function handleRequest(request) {
-  let userAgent = request.headers.get("User-Agent").toLocaleLowerCase();
-  let cliBrowser = cliBrowsers.find(browser => userAgent.includes(browser));
+  let ip = request.headers.get("CF-Connecting-IP");
+  let url = new URL(request.url);
+
+  // Short response if any query string parameter present
+  if (url.search != "") {
+    return new Response(ip, {
+      status: 200,
+      headers: { "Content-Type": "text/plain; charset=utf-8" }
+    });
+  }
 
   let cf = request.cf || {};
-  let ip = request.headers.get("CF-Connecting-IP");
+  let userAgent = request.headers.get("User-Agent").toLocaleLowerCase();
+  let cliBrowser = cliBrowsers.find(browser => userAgent.includes(browser));
   let name = ipPtr(ip);
   let reverse = new Request(
     "https://cloudflare-dns.com/dns-query?name=" +
