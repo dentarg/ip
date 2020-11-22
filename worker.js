@@ -22,6 +22,17 @@ async function handleRequest(request) {
   let ip = request.headers.get("CF-Connecting-IP");
   let url = new URL(request.url);
 
+  // Redirect to the URL shortener app if not exact match
+  if (url.pathname != "/ip") {
+    let newUrl = new URL(request.url); // Avoid modifying "url"
+    newUrl.hostname = "s.burd.se";
+
+    return new Response("", {
+      status: 302,
+      headers: { Location: newUrl.href }
+    });
+  }
+
   // Short response if any query string parameter present
   if (url.search != "") {
     return new Response(ip, {
