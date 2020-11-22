@@ -23,7 +23,7 @@ async function handleRequest(request) {
   let url = new URL(request.url);
 
   // Redirect to the URL shortener app if not exact match
-  if (url.pathname != "/ip") {
+  if (url.hostname != "ip.burd.se" && url.pathname != "/ip") {
     let newUrl = new URL(request.url); // Avoid modifying "url"
     newUrl.hostname = "s.burd.se";
 
