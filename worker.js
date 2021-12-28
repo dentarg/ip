@@ -58,7 +58,7 @@ async function handleRequest(request) {
     : [];
 
   let org;
-  if (cf.asn) {
+  if (url.pathname == "/ip/as" && cf.asn) {
     let ripe = await fetch(
       "https://rest.db.ripe.net/search.json?query-string=AS" + cf.asn
     );
