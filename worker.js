@@ -106,7 +106,7 @@ async function handleRequest(request) {
   let plainBody = `
 ${ip}
 ${records.join("\n")}
-AS${cf.asn} (${org})
+AS${cf.asn} (${org ? org : ""})
 Data center: ${cf.colo}
 ${cf.tlsVersion} (${cf.tlsCipher})
 ${currentDateString}
