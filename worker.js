@@ -104,9 +104,9 @@ async function handleRequest(request) {
   let plainBody = `
 ${ip}
 ${records.join("\n")}
-AS${cf.asn} (${org ? org : ""})
+AS${cf.asn} (${asn.name})
 Data center: ${cf.colo}
-${cf.tlsVersion} (${cf.tlsCipher})
+${cf.tlsVersion ? cf.tlsVersion : "Unencrypted"} ${cf.tlsCipher ? "("+ cf.tlsCipher + ")" : ""}
 ${currentDateString}
 `;
   let htmlBody = `
