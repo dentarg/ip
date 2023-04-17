@@ -33,8 +33,9 @@ async function handleRequest(request) {
     });
   }
 
-  // Short response if any query string parameter present
-  if (url.search != "") {
+  // Short response if any query parameter present for burd.se/ip
+  // Short response if ip.burd.se without query parameters
+  if (url.search != "" || (url.hostname == "ip.burd.se" && url.search == "")) {
     return new Response(ip, {
       status: 200,
       headers: { "Content-Type": "text/plain; charset=utf-8" }
