@@ -58,7 +58,7 @@ async function handleRequest(request) {
     : [];
 
   let org;
-  if (url.pathname == "/ip/as" && cf.asn) {
+  if (cf.asn) {
     let bgp = await fetch(
       "https://bgp.burd.se/" + cf.asn
     );
