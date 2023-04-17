@@ -59,12 +59,12 @@ async function handleRequest(request) {
 
   let org;
   if (url.pathname == "/ip/as" && cf.asn) {
-    let ripe = await fetch(
-      "https://rest.db.ripe.net/search.json?query-string=AS" + cf.asn
+    let bgp = await fetch(
+      "https://bgp.burd.se/" + cf.asn
     );
     org = safe(
-      await ripe.json()
-    ).objects.object[2].attributes.attribute[1].value.toString();
+      await bgp.json()
+    ).name;
   }
 
   let locale = "en-US";
