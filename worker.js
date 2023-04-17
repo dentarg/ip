@@ -57,14 +57,12 @@ async function handleRequest(request) {
     ? json.Answer.map(x => x.data)
     : [];
 
-  let org;
+  let asn;
   if (cf.asn) {
     let bgp = await fetch(
       "https://bgp.burd.se/" + cf.asn
     );
-    org = safe(
-      await bgp.json()
-    ).name;
+    asn = safe(await bgp.json());
   }
 
   let locale = "en-US";
@@ -130,9 +128,7 @@ ${currentDateString}
 <pre>
 ${ip}
 ${records.join("\n")}
-<a href="https://apps.db.ripe.net/db-web-ui/#/query?searchtext=AS${cf.asn}">AS${
-    cf.asn
-  }</a> (${org ? org : "<a href='/ip/as'>get info</a>"})
+<a href="${asn.href}">AS${cf.asn}</a> (${asn.name})
 Country: ${cf.country}
 <a href="https://support.cloudflare.com/hc/en-us/articles/203118044#h_22b01241-01a5-4bed-a897-6e97cff5c288">Data center</a>: ${
     cf.colo
