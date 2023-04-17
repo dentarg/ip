@@ -133,7 +133,7 @@ Country: ${cf.country}
 <a href="https://support.cloudflare.com/hc/en-us/articles/203118044#h_22b01241-01a5-4bed-a897-6e97cff5c288">Data center</a>: ${
     cf.colo
   }
-${cf.tlsVersion} (${cf.tlsCipher})
+${cf.tlsVersion ? cf.tlsVersion : "Unencrypted"} ${cf.tlsCipher ? "("+ cf.tlsCipher + ")" : ""}
 ${currentDateString}
 </pre>
 </body></html>
