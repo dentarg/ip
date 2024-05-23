@@ -1,5 +1,5 @@
 const ipPtr = require("ip-ptr");
-const cliBrowsers = ["curl", "wget"];
+const cliBrowsers = ["curl", "openbsd ftp", "wget"];
 
 addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request));
