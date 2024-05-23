@@ -108,6 +108,7 @@ ${records.join("\n")}
 AS${cf.asn} (${asn.name})
 Data center: ${cf.colo}
 ${cf.tlsVersion ? cf.tlsVersion : "Unencrypted"} ${cf.tlsCipher ? "("+ cf.tlsCipher + ")" : ""}
+${userAgent}
 ${currentDateString}
 `;
   let htmlBody = `
@@ -135,6 +136,7 @@ Country: ${cf.country}
     cf.colo
   }
 ${cf.tlsVersion ? cf.tlsVersion : "Unencrypted"} ${cf.tlsCipher ? "("+ cf.tlsCipher + ")" : ""}
+${userAgent}
 ${currentDateString}
 </pre>
 </body></html>
